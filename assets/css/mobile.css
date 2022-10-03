@@ -1,4 +1,11 @@
 @media screen and (max-width: 800px) {
+    .hidden{
+        display: none;
+    }
+   
+    .block{
+        display: block;
+    }
     .hero-section {
         display: block;
         box-shadow: unset;
@@ -6,7 +13,7 @@
     .hero-content {
         background: #fff;
         color: #000;
-        padding: 20px;
+        padding: 12px 0px;
     }
     .hero-content::after {
         content: unset;
@@ -37,39 +44,11 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .topnav a {
-        display: none;
-    }
-    .topnav a.icon {
-        float: right;
-        display: block;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .topnav.responsive {
-        position: relative;
-    }
-    .topnav.responsive .icon {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .topnav.responsive a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-}
 
 @media screen and (max-width: 540px) {
-    .topnav a {
-        display: none;
+    
+    .content {
+        margin: 18% auto;
     }
-    .topnav a.icon {
-        float: right;
-        display: block;
-        margin-top: -15px;
-    }
+    
 }

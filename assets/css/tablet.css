@@ -1,0 +1,38 @@
+@media screen and (max-width: 768px) {
+  
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .topnav .icon {
+        display: none;
+    }
+    .hiddenMenu{
+        display: none;
+    }
+    button:hover .topnav.responsive a {
+        float: right;
+        display: block;
+        margin-top: -15px;
+    }
+
+    .topnav .icon {
+        display: block;
+        color: red;
+        background-color: white;
+        border: none;
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+  
+}

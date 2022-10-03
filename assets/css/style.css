@@ -1,0 +1,41 @@
+.text-red{
+ color: red;
+}
+
+
+.btnClose{
+    width: 50%;
+    height: 100%;
+    position: unset;
+    background-color: red;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 23px;
+
+}
+.text-validation{
+
+    margin-bottom: 50%;
+margin-top: 50%;
+padding-left: 11%;
+padding-right: 10%;
+font-size: 42px;
+text-align: center;
+}
+.btnClose::after, .btnClose::before{
+    content: unset;
+}
+
+.hidden{
+display: none;
+}
+.display-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
