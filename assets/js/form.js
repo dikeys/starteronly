@@ -4,7 +4,7 @@ import constant from './const.js'
 
 /**
  * Verification if input text is empty
- * @param input selector input you want check
+ * @param {node} input selector input you want check
  */
 export function isInputTextEmpty(inputToChecks) {
 
@@ -22,7 +22,8 @@ export function isInputTextEmpty(inputToChecks) {
 
 /**
  *  add error text after input 
- * @param previousElement Element where the have test and where the text should be displayed next
+ * @param {node} previousElement Element where the have test and where the text should be displayed next
+ * @param {string} message The message to display on error 
  */
 export function addErrorTextInvalidInput(previousElement, message) {
     previousElement.insertAdjacentHTML("afterend",
@@ -32,18 +33,19 @@ export function addErrorTextInvalidInput(previousElement, message) {
 
 /**
  *  remove error text after input 
- * 
+ * @param {callback} callback callback 
  */
 export function removeErrorInvalidInputText(callback) {
     let errorSpans = document.querySelectorAll(".error");
     errorSpans.forEach((e, a) => {
-        callback(e, a)
+        callback(e, a);
     })
 }
 
 /**
  *  check if email is valide 
- * @param emailSelector selector input email you want check
+ * @param {string }emailSelector selector input email you want check
+ * @param {node} addErrorAfterElements node element to add error after
  */
 export function validateEmail(emailValue, addErrorAfterElements) {
     const validRegexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
@@ -52,7 +54,7 @@ export function validateEmail(emailValue, addErrorAfterElements) {
         return true;
     }
 
-    addErrorTextInvalidInput(addErrorAfterElements, 'être un email valide')
+    addErrorTextInvalidInput(addErrorAfterElements, 'être un email valide');
     return false;
 
 
@@ -70,38 +72,52 @@ export function checkDate(dateToCheckValue, addErrorAfterElement) {
     if (myDate.toLocaleDateString("fr").match(validRegex)) {
         return true;
     }
-    addErrorTextInvalidInput(addErrorAfterElement, 'être au format 12/12/2012')
+    addErrorTextInvalidInput(addErrorAfterElement, 'être au format 12/12/2012');
     return false;
 
 }
 
 
+/**
+ * 
+ * @param {Number} Elementvalue 
+ * @param {node} addErrorAfterElement the after display span error
+ */
 export function isNumber(Elementvalue, addErrorAfterElement) {
 
     if (Number.isInteger(parseInt(Elementvalue))) {
         return true;
     }
-    addErrorTextInvalidInput(addErrorAfterElement, 'être un nombre')
-    return false
+    addErrorTextInvalidInput(addErrorAfterElement, 'être un nombre');
+    return false;
 
 }
 
+/**
+ * 
+ * Message after validation form without error
+ */
 function messageSubmissionForm() {
 
-    const content = constant.form.parentNode
-    constant.form.parentNode.innerHTML = ""
-    constant.validationContent.classList.remove("hidden")
-    constant.validationContent.classList.add("display-center")
+    const content = constant.form.parentNode;
+    constant.form.parentNode.innerHTML = "";
+    constant.validationContent.classList.remove("hidden");
+    constant.validationContent.classList.add("display-center");
 
-    content.insertAdjacentElement("afterbegin", constant.validationContent)
+    content.insertAdjacentElement("afterbegin", constant.validationContent);
 
 }
 
+/**
+ * 
+ * @param {node} inputRadio node element to check
+ * @param {node} addErrorAfterElement node element to display error after him
+ */
 function inputRadioIschecked(inputRadio, addErrorAfterElement) {
-    let valid = false
+    let valid = false;
     inputRadio.forEach((elt) => {
         if (elt.checked)
-            valid = true
+            valid = true;
     })
     if (!valid) {
         addErrorTextInvalidInput(addErrorAfterElement, 'être selectionné')
@@ -113,23 +129,23 @@ function inputRadioIschecked(inputRadio, addErrorAfterElement) {
  * validate form 
  */
 export function validate() {
-    const inputTextToCheck = [constant.inputName, constant.inputLastName]
+    const inputTextToCheck = [constant.inputName, constant.inputLastName];
 
     constant.form.addEventListener("submit", (e) => {
-        const radioErrorMessage = constant.radioLocation.nextElementSibling
-        let nbError = 0
-        e.stopPropagation()
-        e.preventDefault()
+        const radioErrorMessage = constant.radioLocation.nextElementSibling;
+        let nbError = 0;
+        e.stopPropagation();
+        e.preventDefault();
 
-        removeErrorInvalidInputText(elt => elt.remove())
-        isInputTextEmpty(inputTextToCheck)
-        validateEmail(constant.emailToCheck.value, constant.emailToCheck)
-        checkDate(constant.birthDate.value, constant.birthDate)
-        isNumber(constant.quantity.value, constant.quantity)
-        removeErrorInvalidInputText((errorElt, nb) => nbError = nb)
-        inputRadioIschecked(constant.location, radioErrorMessage)
-        inputRadioIschecked([constant.termsOfUse], constant.termsOfUse)
+        removeErrorInvalidInputText(elt => elt.remove());
+        isInputTextEmpty(inputTextToCheck);
+        validateEmail(constant.emailToCheck.value, constant.emailToCheck);
+        checkDate(constant.birthDate.value, constant.birthDate);
+        isNumber(constant.quantity.value, constant.quantity);
+        removeErrorInvalidInputText((errorElt, nb) => nbError = nb);
+        inputRadioIschecked(constant.location, radioErrorMessage);
+        inputRadioIschecked([constant.termsOfUse], constant.termsOfUse);
         if (nbError < 1)
-            messageSubmissionForm()
+            messageSubmissionForm();
     })
 }
