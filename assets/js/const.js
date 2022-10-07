@@ -14,6 +14,7 @@ const constant = {
     location: document.querySelectorAll("input[name='location']"),
     radioLocation: document.querySelector(".text-label"),
     termsOfUse: document.querySelector('.checkbox2-label'),
+    cgu: document.getElementById("cgu"),
     nav: document.getElementById("nav"),
     menu: document.querySelectorAll(".main-navbar a"),
     topNav: document.getElementById("myTopnav"),
